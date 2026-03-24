@@ -8,6 +8,7 @@ class Player{
         Player(std::string n);
         std::string name;
         double balance;
-        void addMoney();
-        void betMoney();
+        void actualiserBalance(double bal);
+
+        // Inventory inventaire; // pour la collection de cartes
 };

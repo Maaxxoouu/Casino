@@ -11,11 +11,12 @@
 int main(int argc, char *argv[]) {
 
     std::cout<<"Quel est votre nom ?"<<std::endl;
-    std::cout<<" "<<std::endl;
     std::string n;
     std::cin>>n;
     Player joueur = Player(n);
-    std::cout<<"*************** BIENVENUE AU CASINO "<<joueur.name<<"! ***************"<<std::endl;
+    std::cout<<" "<<std::endl;
+
+    std::cout<<"*************** BIENVENUE AU CASINO "<<joueur.name<<" ! ***************"<<std::endl;
     std::cout<<" "<<std::endl;
     
 
