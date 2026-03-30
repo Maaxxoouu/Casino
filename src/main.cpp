@@ -19,13 +19,14 @@ int main(int argc, char *argv[]) {
     std::cout<<"*************** BIENVENUE AU CASINO "<<joueur.name<<" ! ***************"<<std::endl;
     std::cout<<" "<<std::endl;
     
+    std::cout<<"Vous avez actuellement "<<joueur.balance<<" euros"<<std::endl;
 
     int jouer = 1;
 
     while(jouer){
-        std::cout<<"Vous avez actuellement "<<joueur.balance<<" euros"<<std::endl;
         std::cout<<"A quoi voulez-vous jouer ?"<<std::endl;
         std::cout<<" "<<std::endl;
+        std::cout<<"-1. Activer/Desactiver la mascotte"<<std::endl;
         std::cout<<"0. Sortir du Casino"<<std::endl;
         std::cout<<"1. [7.7.7] Slot Machine"<<std::endl;
         std::cout<<"2. Deviner le chiffre entre 1 et 5"<<std::endl;
@@ -34,15 +35,28 @@ int main(int argc, char *argv[]) {
         std::cout<<" "<<std::endl;
         std::cout<<"Veuillez entrer [0], [1], [2], [3] ou [4]"<<std::endl;
 
-        int a,b;
+        int a;
         std::cin>>a;
 
         if (a == 0){
-            jouer = 0;  
-        /*}else if (a == 1){
-            SlotMachine Jeu1 = SlotMachine(balance);
-            balance = Jeu1.Jouer();*/
+            jouer = 0;
+        }else if (a == -1){
+            int c = 0;
+        }else if (a == 1){
+            int keep_playing = 1;
+            while (keep_playing){
+                SlotMachine Jeu1 = SlotMachine(joueur.balance);
+                joueur.balance = Jeu1.Play();
+                std::cout<<"Vous avez actuellement "<<joueur.balance<<" euros"<<std::endl;
+                std::cout<<"Souhaitez-vous rejouer au Slot Machine ?"<<std::endl;
+                std::cout<<"0. Non"<<std::endl;
+                std::cout<<"1. Oui"<<std::endl;
+                std::cout<<"Veuillez entrer [0] ou [1]"<<std::endl;
+                std::cout<<" "<<std::endl;
+                std::cin>>keep_playing;
+            }
         }
+
     }
 
   

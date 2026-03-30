@@ -1,0 +1,68 @@
+#include "SlotMachine.hpp"
+
+#include <iostream>
+#include <unistd.h>
+#include <random>
+
+
+SlotMachine::SlotMachine(int balance){
+    bal = balance;
+}
+
+int SlotMachine::Play(){
+    std::random_device rd; //On initialise la seed
+    std::mt19937 gen(rd()); //On choisit le moteur
+    std::uniform_int_distribution<> distr(1, 9); //On définit la distribution entre 1 et 9 inclus
+    std::cout<<"Pariez votre argent :"<<std::endl;
+    int b;
+    std::cin>>b;
+    if (b <= bal && b > 0){
+        bal = bal - b;
+        std::cout<<"Les jeux sont faits"<<std::endl;
+        std::cout<<" "<<std::endl;
+        usleep(2000000); // on attend 2 secondes
+
+        int number1 = distr(gen);
+        int number2 = distr(gen);
+        int number3 = distr(gen);
+
+        std::cout<<"-------------"<<std::endl;
+        std::cout<<"- "<< number1 << " - "<< number2 << " - " << number3 << " -"<<std::endl;
+        std::cout<<"-------------"<<std::endl;
+        std::cout<<" "<<std::endl;
+
+        if (number1 % 2 == 0 && number2 % 2 == 0 && number3 % 2 == 0){
+            std::cout<<"FELICITATIONS !!"<<std::endl;
+            std::cout<<" "<<std::endl;
+            int gains = b * 2;
+            bal += gains;
+            std::cout<<"Vous avez gagne "<< gains << std::endl;
+            std::cout<<" "<<std::endl;
+        }else if (number1 % 2 != 0 && number2 % 2 != 0 && number3 % 2 != 0){
+            std::cout<<"FELICITATIONS !!"<<std::endl;
+            std::cout<<" "<<std::endl;
+            int gains = b * 2;
+            bal += gains;
+            std::cout<<"Vous avez gagne "<< gains << std::endl;
+            std::cout<<" "<<std::endl;
+        } else if (number1 == number2 && number2 == number3){
+            std::cout<<"FELICITATIONS !!"<<std::endl;
+            std::cout<<" "<<std::endl;
+            int gains = b * 5;
+            bal += gains;
+            std::cout<<"Vous avez gagne "<< gains << std::endl;
+            std::cout<<" "<<std::endl;
+        } else if (number1 == 7 && number2 == 7 && number3 == 7){
+            std::cout<<"FELICITATIONS !!"<<std::endl;
+            std::cout<<" "<<std::endl;
+            int gains = b * 10;
+            bal += gains;
+            std::cout<<"Vous avez gagne "<< gains << std::endl;
+            std::cout<<" "<<std::endl;
+        }else{
+            std::cout<<"Dommage.. Vous avez perdu !"<<std::endl;
+            std::cout<<" "<<std::endl;
+        }
+    }
+    return bal;
+}

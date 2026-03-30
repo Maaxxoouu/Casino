@@ -1,11 +1,13 @@
 
 #pragma once
 
-class SlotMachine{
+#include "Games.hpp"
+
+class SlotMachine : public Games{
     public:
         SlotMachine(int balance);
-        int Jouer();
+        int Play() override;
     
-    private:
-        int bal;
+    /*private:
+        int bal;*/
 };

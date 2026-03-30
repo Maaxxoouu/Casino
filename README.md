@@ -7,3 +7,8 @@ cmake --build .
 ```
 
  L'application exécutable en appelant `.\bin\Debug\Casino.exe`.
+
+
+ A faire :
+ - mascotte
+ - remplacer les chiffres dans la slot machine par des emojis (optionnel)
