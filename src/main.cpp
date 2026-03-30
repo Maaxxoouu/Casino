@@ -8,6 +8,7 @@
 #include "jeux/SlotMachine.hpp"
 #include "Player.hpp"
 #include "Mascotte/Mascotte.hpp"
+#include "PlayAgain.hpp"
 
 int main(int argc, char *argv[]) {
 
@@ -43,6 +44,7 @@ int main(int argc, char *argv[]) {
         std::cin>>a;
 
         if (a == 0){
+            std::cout<<"Au revoir !"<<std::endl;
             jouer = 0;
         }else if (a == -1){
             M.toggle();
@@ -51,13 +53,15 @@ int main(int argc, char *argv[]) {
             while (keep_playing){
                 SlotMachine Jeu1 = SlotMachine(joueur.balance);
                 joueur.balance = Jeu1.Play();
-                std::cout<<"Vous avez actuellement "<<joueur.balance<<" euros"<<std::endl;
-                std::cout<<"Souhaitez-vous rejouer au Slot Machine ?"<<std::endl;
-                std::cout<<"0. Non"<<std::endl;
-                std::cout<<"1. Oui"<<std::endl;
-                std::cout<<"Veuillez entrer [0] ou [1]"<<std::endl;
-                std::cout<<" "<<std::endl;
-                std::cin>>keep_playing;
+                if (joueur.balance == 0){
+                    std::cout<<"GAME OVER ! Vous n'avez plus d'argent"<<std::endl;
+                    jouer = 0;
+                    keep_playing = 0;
+                }else{
+                    std::cout<<"Vous avez actuellement "<<joueur.balance<<" euros"<<std::endl;
+                PlayAgain rejouer = PlayAgain("Slot Machine");
+                keep_playing = rejouer.Dialog();
+                }
             }
         }
 

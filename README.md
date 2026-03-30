@@ -11,3 +11,4 @@ cmake --build .
 
  A faire :
  - remplacer les chiffres dans la slot machine par des emojis (optionnel)
+ - système de prêts (avec des intérêts?) (optionnel)
