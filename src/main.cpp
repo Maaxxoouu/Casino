@@ -6,9 +6,9 @@
 #include <iterator> //pour std::begin, std::end
 
 #include "jeux/SlotMachine.hpp"
-#include "Player.hpp"
+#include "Player/Player.hpp"
 #include "Mascotte/Mascotte.hpp"
-#include "PlayAgain.hpp"
+#include "Dialog/PlayAgain.hpp"
 
 int main(int argc, char *argv[]) {
 
