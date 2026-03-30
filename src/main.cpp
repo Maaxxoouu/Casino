@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 
         int a,b;
         std::cin>>a;
-        std::cout<<a<<std::endl;
+
         if (a == 0){
             jouer = 0;  
         /*}else if (a == 1){
