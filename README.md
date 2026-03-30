@@ -10,5 +10,4 @@ cmake --build .
 
 
  A faire :
- - mascotte
  - remplacer les chiffres dans la slot machine par des emojis (optionnel)

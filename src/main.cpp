@@ -7,6 +7,7 @@
 
 #include "jeux/SlotMachine.hpp"
 #include "Player.hpp"
+#include "Mascotte/Mascotte.hpp"
 
 int main(int argc, char *argv[]) {
 
@@ -16,6 +17,8 @@ int main(int argc, char *argv[]) {
     Player joueur = Player(n);
     std::cout<<" "<<std::endl;
 
+    Mascotte M = Mascotte();
+
     std::cout<<"*************** BIENVENUE AU CASINO "<<joueur.name<<" ! ***************"<<std::endl;
     std::cout<<" "<<std::endl;
     
@@ -24,6 +27,7 @@ int main(int argc, char *argv[]) {
     int jouer = 1;
 
     while(jouer){
+        M.display();
         std::cout<<"A quoi voulez-vous jouer ?"<<std::endl;
         std::cout<<" "<<std::endl;
         std::cout<<"-1. Activer/Desactiver la mascotte"<<std::endl;
@@ -41,7 +45,7 @@ int main(int argc, char *argv[]) {
         if (a == 0){
             jouer = 0;
         }else if (a == -1){
-            int c = 0;
+            M.toggle();
         }else if (a == 1){
             int keep_playing = 1;
             while (keep_playing){
