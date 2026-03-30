@@ -1,7 +1,7 @@
 set(SOURCES
     main.cpp
     Player/Player.cpp
-    jeux/SlotMachine.cpp
+    Jeux/SlotMachine.cpp
     Mascotte/Mascotte.cpp
     Dialog/PlayAgain.cpp   
 )
