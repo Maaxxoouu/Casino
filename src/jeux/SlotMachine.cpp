@@ -63,6 +63,10 @@ int SlotMachine::Play(){
             std::cout<<"Dommage.. Vous avez perdu !"<<std::endl;
             std::cout<<" "<<std::endl;
         }
+    }else if (b<0){
+        std::cout<<"Vous ne pouvez pas mettre une mise negative.."<<std::endl;
+    }else{
+        std::cout<<"Vous n'avez pas assez d'argent pour placer cette mise !"<<std::endl;
     }
     return bal;
 }

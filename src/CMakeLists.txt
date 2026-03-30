@@ -3,7 +3,7 @@ set(SOURCES
     Player.cpp
     jeux/SlotMachine.cpp
     Mascotte/Mascotte.cpp
-    PlayAgain.cpp
+    PlayAgain.cpp   
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
