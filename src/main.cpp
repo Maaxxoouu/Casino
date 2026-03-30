@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
         std::cout<<"3. Roulette"<<std::endl;
         std::cout<<"4. Achat de boosters Pokemon"<<std::endl;
         std::cout<<" "<<std::endl;
-        std::cout<<"Veuillez entrer [0], [1], [2], [3] ou [4]"<<std::endl;
+        std::cout<<"Veuillez entrer [-1], [0], [1], [2], [3] ou [4]"<<std::endl;
 
         int a;
         std::cin>>a;
@@ -53,18 +53,17 @@ int main(int argc, char *argv[]) {
             while (keep_playing){
                 SlotMachine Jeu1 = SlotMachine(joueur.balance);
                 joueur.balance = Jeu1.Play();
-                if (joueur.balance == 0){
-                    std::cout<<"GAME OVER ! Vous n'avez plus d'argent"<<std::endl;
-                    jouer = 0;
-                    keep_playing = 0;
-                }else{
-                    std::cout<<"Vous avez actuellement "<<joueur.balance<<" euros"<<std::endl;
-                PlayAgain rejouer = PlayAgain("Slot Machine");
+                std::cout<<"Vous avez actuellement "<<joueur.balance<<" euros"<<std::endl;
+                PlayAgain rejouer = PlayAgain("Slot Machine", joueur.balance);
                 keep_playing = rejouer.Dialog();
-                }
             }
         }
 
+
+
+        if (joueur.balance == 0){
+            jouer = 0;
+        }
     }
 
   

@@ -6,8 +6,9 @@
 
 class PlayAgain{
     public:
-        PlayAgain(std::string);
+        PlayAgain(std::string, int);
         int Dialog();
     private:
         std::string txt;
+        int bal;
 };
