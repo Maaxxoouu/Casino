@@ -5,7 +5,7 @@
 #include <algorithm> //pour std::find
 #include <iterator> //pour std::begin, std::end
 
-#include "jeux/SlotMachine.hpp"
+#include "Jeux/SlotMachine.hpp"
 #include "Player/Player.hpp"
 #include "Mascotte/Mascotte.hpp"
 #include "Dialog/PlayAgain.hpp"
