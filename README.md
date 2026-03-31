@@ -17,3 +17,4 @@ cmake --build .
  - Système de cartes pokémons
  - Initialiser l'instance joueur à partir d'un fichier
  - Save l'instance joueur dans le même fichier
+ - Il faut gagner à la Slot Machine pour Débloquer le Guess Number, et faut gagner au Guess Number pour débloquer la roulette (gamification)
