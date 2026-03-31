@@ -5,11 +5,13 @@
 #include <algorithm> //pour std::find
 #include <iterator> //pour std::begin, std::end
 
-#include "Jeux/SlotMachine.hpp"
 #include "Player/Player.hpp"
 #include "Mascotte/Mascotte.hpp"
-#include "Dialog/PlayAgain.hpp"
+#include "Jeux/SlotMachine.hpp"
 #include "Jeux/GuessNumber.hpp"
+#include "Jeux/Roulette.hpp"
+#include "Dialog/PlayAgain.hpp"
+
 
 int main(int argc, char *argv[]) {
 
@@ -52,7 +54,7 @@ int main(int argc, char *argv[]) {
         }else if (a == 1){
             int keep_playing = 1;
             while (keep_playing){
-                double bal_temp = joueur.getBal();
+                int bal_temp = joueur.getBal();
                 SlotMachine Jeu1 = SlotMachine(bal_temp);
                 bal_temp = Jeu1.Play();
                 joueur.setBal(bal_temp);
@@ -63,12 +65,23 @@ int main(int argc, char *argv[]) {
         }else if (a == 2){
             int keep_playing = 1;
             while (keep_playing){
-                double bal_temp = joueur.getBal();
+                int bal_temp = joueur.getBal();
                 GuessNumber Jeu2 = GuessNumber(bal_temp);
                 bal_temp = Jeu2.Play();
                 joueur.setBal(bal_temp);
                 std::cout<<"Vous avez actuellement "<<bal_temp<<" euros"<<std::endl;
                 PlayAgain rejouer = PlayAgain("Deviner le chiffre", bal_temp);
+                keep_playing = rejouer.Dialog();
+            }
+        }else if (a == 3){
+            int keep_playing = 1;
+            while (keep_playing){
+                int bal_temp = joueur.getBal();
+                Roulette Jeu2 = Roulette(bal_temp);
+                bal_temp = Jeu2.Play();
+                joueur.setBal(bal_temp);
+                std::cout<<"Vous avez actuellement "<<bal_temp<<" euros"<<std::endl;
+                PlayAgain rejouer = PlayAgain("Roulette", bal_temp);
                 keep_playing = rejouer.Dialog();
             }
         }

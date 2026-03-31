@@ -9,11 +9,11 @@ std::string Player::getName(){
     return name;
 }
 
-double Player::getBal(){
+int Player::getBal(){
     return balance;
 }
 
-void Player::setBal(double newBal){
+void Player::setBal(int newBal){
     balance = newBal;
 }
 

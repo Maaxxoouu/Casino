@@ -8,8 +8,8 @@ class Player{
         Player(std::string n);
         std::string name;
         std::string getName();
-        double getBal();
-        void setBal(double);
+        int getBal();
+        void setBal(int);
     
         // Inventory inventaire; // pour la collection de cartes
 

@@ -3,6 +3,7 @@ set(SOURCES
     Player/Player.cpp
     Jeux/SlotMachine.cpp
     Jeux/GuessNumber.cpp
+    Jeux/Roulette.cpp
     Mascotte/Mascotte.cpp
     Dialog/PlayAgain.cpp
 
