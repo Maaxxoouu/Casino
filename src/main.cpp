@@ -15,12 +15,7 @@
 
 int main(int argc, char *argv[]) {
 
-    std::cout<<"Quel est votre nom ? (en 1 mot sans espace)"<<std::endl;
-    std::string n;
-    std::cin>>n;
-    Player joueur = Player(n);
-    std::cout<<" "<<std::endl;
-
+    Player joueur = Player();
     Mascotte M = Mascotte();
 
     std::cout<<"*************** BIENVENUE AU CASINO "<<joueur.getName()<<" ! ***************"<<std::endl;
@@ -47,6 +42,7 @@ int main(int argc, char *argv[]) {
         std::cin>>a;
 
         if (a == 0){
+            joueur.save("../save.txt");
             std::cout<<"Au revoir !"<<std::endl;
             jouer = 0;
         }else if (a == -1){
@@ -89,6 +85,7 @@ int main(int argc, char *argv[]) {
 
 
         if (joueur.getBal() == 0){
+            joueur.save("../save.txt");
             jouer = 0;
         }
     }
