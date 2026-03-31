@@ -5,6 +5,15 @@ Player::Player(std::string n){
     balance = 1000;
 }
 
-void Player::actualiserBalance(double bal){
-    balance = bal;
+std::string Player::getName(){
+    return name;
 }
+
+double Player::getBal(){
+    return balance;
+}
+
+void Player::setBal(double newBal){
+    balance = newBal;
+}
+

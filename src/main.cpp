@@ -9,10 +9,11 @@
 #include "Player/Player.hpp"
 #include "Mascotte/Mascotte.hpp"
 #include "Dialog/PlayAgain.hpp"
+#include "Jeux/GuessNumber.hpp"
 
 int main(int argc, char *argv[]) {
 
-    std::cout<<"Quel est votre nom ?"<<std::endl;
+    std::cout<<"Quel est votre nom ? (en 1 mot sans espace)"<<std::endl;
     std::string n;
     std::cin>>n;
     Player joueur = Player(n);
@@ -20,10 +21,10 @@ int main(int argc, char *argv[]) {
 
     Mascotte M = Mascotte();
 
-    std::cout<<"*************** BIENVENUE AU CASINO "<<joueur.name<<" ! ***************"<<std::endl;
+    std::cout<<"*************** BIENVENUE AU CASINO "<<joueur.getName()<<" ! ***************"<<std::endl;
     std::cout<<" "<<std::endl;
     
-    std::cout<<"Vous avez actuellement "<<joueur.balance<<" euros"<<std::endl;
+    std::cout<<"Vous avez actuellement "<<joueur.getBal()<<" euros"<<std::endl;
 
     int jouer = 1;
 
@@ -51,17 +52,30 @@ int main(int argc, char *argv[]) {
         }else if (a == 1){
             int keep_playing = 1;
             while (keep_playing){
-                SlotMachine Jeu1 = SlotMachine(joueur.balance);
-                joueur.balance = Jeu1.Play();
-                std::cout<<"Vous avez actuellement "<<joueur.balance<<" euros"<<std::endl;
-                PlayAgain rejouer = PlayAgain("Slot Machine", joueur.balance);
+                double bal_temp = joueur.getBal();
+                SlotMachine Jeu1 = SlotMachine(bal_temp);
+                bal_temp = Jeu1.Play();
+                joueur.setBal(bal_temp);
+                std::cout<<"Vous avez actuellement "<<bal_temp<<" euros"<<std::endl;
+                PlayAgain rejouer = PlayAgain("Slot Machine", bal_temp);
+                keep_playing = rejouer.Dialog();
+            }
+        }else if (a == 2){
+            int keep_playing = 1;
+            while (keep_playing){
+                double bal_temp = joueur.getBal();
+                GuessNumber Jeu2 = GuessNumber(bal_temp);
+                bal_temp = Jeu2.Play();
+                joueur.setBal(bal_temp);
+                std::cout<<"Vous avez actuellement "<<bal_temp<<" euros"<<std::endl;
+                PlayAgain rejouer = PlayAgain("Deviner le chiffre", bal_temp);
                 keep_playing = rejouer.Dialog();
             }
         }
 
 
 
-        if (joueur.balance == 0){
+        if (joueur.getBal() == 0){
             jouer = 0;
         }
     }

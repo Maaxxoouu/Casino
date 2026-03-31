@@ -7,8 +7,12 @@ class Player{
     public:
         Player(std::string n);
         std::string name;
-        double balance;
-        void actualiserBalance(double bal);
-
+        std::string getName();
+        double getBal();
+        void setBal(double);
+    
         // Inventory inventaire; // pour la collection de cartes
+
+    private:
+        int balance;
 };

@@ -3,8 +3,8 @@
 
 #include "Games.hpp"
 
-class SlotMachine : public Games{
+class GuessNumber : public Games{
     public:
-        SlotMachine(int balance);
+        GuessNumber(int balance);
         int Play() override;
 };

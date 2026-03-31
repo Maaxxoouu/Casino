@@ -12,3 +12,8 @@ cmake --build .
  A faire :
  - remplacer les chiffres dans la slot machine par des emojis (optionnel)
  - système de prêts (avec des intérêts?) (optionnel)
+ - Roulette
+ - Blackjack (optionnel)
+ - Système de cartes pokémons
+ - Initialiser l'instance joueur à partir d'un fichier
+ - Save l'instance joueur dans le même fichier
