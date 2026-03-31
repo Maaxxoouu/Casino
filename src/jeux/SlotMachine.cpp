@@ -24,10 +24,7 @@ int SlotMachine::Play(){
         int number2 = distr(gen);
         int number3 = distr(gen);
 
-        std::cout<<"-------------"<<std::endl;
-        std::cout<<"- "<< number1 << " - "<< number2 << " - " << number3 << " -"<<std::endl;
-        std::cout<<"-------------"<<std::endl;
-        std::cout<<" "<<std::endl;
+        printResult(number1, number2, number3);
 
         usleep(1500000); // on attend 1.5 secondes pour voir le resultat tranquillement
 
@@ -80,4 +77,25 @@ int SlotMachine::Play(){
         std::cout<<" "<<std::endl;
     }
     return bal;
+}
+
+void SlotMachine::printResult(int number1, int number2, int number3){
+    std::cout<<"-------------"<<std::endl;
+    std::cout<<"- "<< number1 << " -   -   -"<<std::endl;
+    std::cout<<"-------------"<<std::endl;
+    std::cout<<" "<<std::endl;
+
+    usleep(500000); // on attend 0.5 secondes
+
+    std::cout<<"-------------"<<std::endl;
+    std::cout<<"- "<< number1 << " - "<< number2 << " -   -"<<std::endl;
+    std::cout<<"-------------"<<std::endl;
+    std::cout<<" "<<std::endl;
+
+    usleep(500000); // on attend 0.5 secondes
+
+    std::cout<<"-------------"<<std::endl;
+    std::cout<<"- "<< number1 << " - "<< number2 << " - " << number3 << " -"<<std::endl;
+    std::cout<<"-------------"<<std::endl;
+    std::cout<<" "<<std::endl;
 }

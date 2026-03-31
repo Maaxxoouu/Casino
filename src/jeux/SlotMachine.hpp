@@ -7,4 +7,5 @@ class SlotMachine : public Games{
     public:
         SlotMachine(int balance);
         int Play() override;
+        void printResult(int, int, int);
 };
