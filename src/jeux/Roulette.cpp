@@ -60,13 +60,16 @@ int Roulette::Play(){
             std::cout<<" "<<std::endl;
         }else{
             std::cout<<"Dommage.. Vous avez perdu !"<<std::endl;
+            usleep(1000000); // on attend 1 seconde pour voir qu'on a perdu
             std::cout<<" "<<std::endl;
         }
        
     }else if (b<=0){
         std::cout<<"Vous ne pouvez pas mettre une mise negative ou nulle.."<<std::endl;
+        std::cout<<" "<<std::endl;
     }else{
         std::cout<<"Vous n'avez pas assez d'argent pour placer cette mise !"<<std::endl;
+        std::cout<<" "<<std::endl;
     }
     return bal;
 }
