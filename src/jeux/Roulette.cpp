@@ -1,10 +1,6 @@
 #include "Roulette.hpp"
 
-Roulette::Roulette(int balance){
-    bal = balance;
-}
-
-int Roulette::Play(){
+int Roulette::Play(int balance, Player &joueur){
     std::random_device rd; //On initialise la seed
     std::mt19937 gen(rd()); //On choisit le moteur
     std::uniform_int_distribution<> distr(1, 36); //On définit la distribution entre 1 et 36 
@@ -13,8 +9,8 @@ int Roulette::Play(){
     int b;
     std::cin>>b;
     
-    if (b <= bal && b > 0){
-        bal = bal - b;
+    if (b <= balance && b > 0){
+        balance = balance - b;
 
         std::cout<<"Sur combien de nombre(s) souhaitez-vous parier [1 - 36] ?"<<std::endl;
         int multiplicator, single_bet;
@@ -50,11 +46,12 @@ int Roulette::Play(){
         }
 
         if (find){
+            joueur.hasWonRoulette = 1;
             std::cout<<"FELICITATIONS !!"<<std::endl;
             usleep(1000000); // on attend 1 secondes pour pouvoir lire le dialogue
             std::cout<<" "<<std::endl;
             int gains = single_bet * 36 * find;
-            bal += gains;
+            balance += gains;
             std::cout<<"Vous avez gagne "<< gains << " euros" << std::endl;
             usleep(1000000); // on attend 1 secondes pour pouvoir lire le dialogue
             std::cout<<" "<<std::endl;
@@ -71,5 +68,5 @@ int Roulette::Play(){
         std::cout<<"Vous n'avez pas assez d'argent pour placer cette mise !"<<std::endl;
         std::cout<<" "<<std::endl;
     }
-    return bal;
+    return balance;
 }

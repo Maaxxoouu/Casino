@@ -1,10 +1,10 @@
 
 #pragma once
 
-#include "Games.hpp"
+#include "../Player/Player.hpp"
 // Creation d'une classe GuessNumber pour eviter de surcharger le main
-class GuessNumber : public Games{
+class GuessNumber{
     public:
-        GuessNumber(int balance);
-        int Play() override;
+        GuessNumber() = default;
+        int Play(int, Player&);
 };

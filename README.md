@@ -21,3 +21,4 @@ cmake --build .
 
 
  bien dit que le fichier save.txt doit être à la racine du projet sinon ça ne fonctionne pas
+ + pareil pour level.txt

@@ -1,18 +1,14 @@
 #include "GuessNumber.hpp"
 
-GuessNumber::GuessNumber(int balance){
-    bal = balance;
-}
-
-int GuessNumber::Play(){
+int GuessNumber::Play(int balance, Player &joueur){
     std::random_device rd; //On initialise la seed
     std::mt19937 gen(rd()); //On choisit le moteur
     std::uniform_int_distribution<> distr(1, 5); //On définit la distribution entre 1 et 5 inclus
     std::cout<<"Combien souhaitez-vous parier ?"<<std::endl;
     int b,guess;
     std::cin>>b;
-    if (b <= bal && b > 0){
-        bal = bal - b;
+    if (b <= balance && b > 0){
+        balance = balance - b;
         std::cout<<"Choisissez un chiffre entre 1 et 5 (inclus) :"<<std::endl;
         std::cin>>guess;
         std::cout<<" "<<std::endl;
@@ -28,11 +24,12 @@ int GuessNumber::Play(){
         usleep(500000); // on attend 0.5 secondes de plus
         std::cout<<" "<<std::endl;
         if (guess == number){
+            joueur.hasWonGuessNumber = 1;
             std::cout<<"FELICITATIONS !!"<<std::endl;
             usleep(1000000); // on attend 1 seconde
             std::cout<<" "<<std::endl;
             int gains = b * 2;
-            bal += gains;
+            balance += gains;
             std::cout<<"Vous avez gagne "<< gains << " euros" << std::endl;
             usleep(1500000); // on attend 1.5 secondes pour pouvoir lire le montant de gain
             std::cout<<" "<<std::endl;
@@ -48,5 +45,5 @@ int GuessNumber::Play(){
         std::cout<<"Vous n'avez pas assez d'argent pour placer cette mise !"<<std::endl;
         std::cout<<" "<<std::endl;
     }
-    return bal;
+    return balance;
 }

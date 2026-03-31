@@ -21,10 +21,8 @@ void Player::setBal(int newBal){
 
 bool Player::load(const std::string& filename) {
     std::ifstream file(filename);
-    std::cout << "uwu" << std::endl;
     
     if (file.is_open()) {
-        std::cout << "uwu" << std::endl;
         std::string line;
         // On lit la première ligne du fichier
         if (std::getline(file, line)) {
@@ -32,12 +30,23 @@ bool Player::load(const std::string& filename) {
             std::stringstream ss(line);
             std::string loadedName;
             std::string loadedBalanceStr;
+            std::string slotStr;
+            std::string guessStr;
+            std::string rouletteStr;
             
             // On coupe à chaque ';'
-            if (std::getline(ss, loadedName, ';') && std::getline(ss, loadedBalanceStr)) {
+            if (std::getline(ss, loadedName, ';') &&
+                std::getline(ss, loadedBalanceStr, ';') &&
+                std::getline(ss, slotStr, ';') &&
+                std::getline(ss, guessStr, ';') &&
+                std::getline(ss, rouletteStr)) {
                 name = loadedName;
                 // On convertit le string de la balance en entier (int)
-                balance = std::stoi(loadedBalanceStr); 
+                balance = std::stoi(loadedBalanceStr);
+                // On convertit les "0" ou "1" en booléens
+                hasWonSlotMachine = std::stoi(slotStr); 
+                hasWonGuessNumber = std::stoi(guessStr);
+                hasWonRoulette = std::stoi(rouletteStr);
                 file.close();
                 return true; // Le chargement a réussi
             }
@@ -52,11 +61,11 @@ void Player::save(const std::string& filename) {
     
     if (file.is_open()) {
         if (balance == 0){
-            file << name << ";1000\n";
+            file << name << ";1000;0;0;0\n";
             file.close();
             std::cout << "Sauvegarde reset !" << std::endl;
         }else{
-            file << name << ";" << balance << "\n";
+            file << name << ";" << balance << ";" << hasWonSlotMachine <<";"<<hasWonGuessNumber<<";"<<hasWonRoulette<<"\n";
             file.close();
             std::cout << "Sauvegarde reussie !" << std::endl;
         }

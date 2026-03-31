@@ -1,21 +1,14 @@
 #include "SlotMachine.hpp"
 
-
-
-
-SlotMachine::SlotMachine(int balance){
-    bal = balance;
-}
-
-int SlotMachine::Play(){
+int SlotMachine::Play(int balance, Player &joueur){
     std::random_device rd; //On initialise la seed
     std::mt19937 gen(rd()); //On choisit le moteur
     std::uniform_int_distribution<> distr(1, 9); //On définit la distribution entre 1 et 9 inclus
     std::cout<<"Combien souhaitez-vous parier ?"<<std::endl;
     int b;
     std::cin>>b;
-    if (b <= bal && b > 0){
-        bal = bal - b;
+    if (b <= balance && b > 0){
+        balance = balance - b;
         std::cout<<"Les jeux sont faits"<<std::endl;
         std::cout<<" "<<std::endl;
         usleep(1500000); // on attend 1.5 secondes
@@ -29,38 +22,42 @@ int SlotMachine::Play(){
         usleep(1500000); // on attend 1.5 secondes pour voir le resultat tranquillement
 
         if (number1 % 2 == 0 && number2 % 2 == 0 && number3 % 2 == 0){
+            joueur.hasWonSlotMachine = 1;
             std::cout<<"FELICITATIONS !!"<<std::endl;
             usleep(500000); // on attend 0.5 secondes
             std::cout<<" "<<std::endl;
             int gains = b * 2;
-            bal += gains;
+            balance += gains;
             std::cout<<"Vous avez gagne "<< gains << " euros" << std::endl;
             usleep(1500000); // on attend 1.5 secondes pour voir nos gains
             std::cout<<" "<<std::endl;
         }else if (number1 % 2 != 0 && number2 % 2 != 0 && number3 % 2 != 0){
+            joueur.hasWonSlotMachine = 1;
             std::cout<<"FELICITATIONS !!"<<std::endl;
             usleep(500000); // on attend 0.5 secondes
             std::cout<<" "<<std::endl;
             int gains = b * 2;
-            bal += gains;
+            balance += gains;
             std::cout<<"Vous avez gagne "<< gains << " euros" << std::endl;
             usleep(1500000); // on attend 1.5 secondes pour voir nos gains
             std::cout<<" "<<std::endl;
         } else if (number1 == number2 && number2 == number3){
+            joueur.hasWonSlotMachine = 1;
             std::cout<<"FELICITATIONS !!"<<std::endl;
             usleep(500000); // on attend 0.5 secondes
             std::cout<<" "<<std::endl;
             int gains = b * 5;
-            bal += gains;
+            balance += gains;
             std::cout<<"Vous avez gagne "<< gains << " euros" << std::endl;
             usleep(1500000); // on attend 1.5 secondes pour voir nos gains
             std::cout<<" "<<std::endl;
         } else if (number1 == 7 && number2 == 7 && number3 == 7){
+            joueur.hasWonSlotMachine = 1;
             std::cout<<"FELICITATIONS !!"<<std::endl;
             usleep(500000); // on attend 0.5 secondes
             std::cout<<" "<<std::endl;
             int gains = b * 10;
-            bal += gains;
+            balance += gains;
             std::cout<<"Vous avez gagne "<< gains << " euros" << std::endl;
             usleep(1500000); // on attend 1.5 secondes pour voir nos gains
             std::cout<<" "<<std::endl;
@@ -76,7 +73,7 @@ int SlotMachine::Play(){
         std::cout<<"Vous n'avez pas assez d'argent pour placer cette mise !"<<std::endl;
         std::cout<<" "<<std::endl;
     }
-    return bal;
+    return balance;
 }
 
 void SlotMachine::printResult(int number1, int number2, int number3){

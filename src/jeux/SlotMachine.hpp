@@ -1,11 +1,11 @@
 
 #pragma once
 
-#include "Games.hpp"
+#include "../Player/Player.hpp"
 // Creation d'une classe SlotMachine pour eviter de surcharger le main
-class SlotMachine : public Games{
+class SlotMachine{
     public:
-        SlotMachine(int balance);
-        int Play() override;
+        SlotMachine() = default;
+        int Play(int, Player&);
         void printResult(int, int, int);
 };

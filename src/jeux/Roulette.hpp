@@ -1,10 +1,10 @@
 
 #pragma once
 
-#include "Games.hpp"
+#include "../Player/Player.hpp"
 // Creation d'une classe Roulette pour eviter de surcharger le main
-class Roulette : public Games{
+class Roulette{
     public:
-        Roulette(int balance);
-        int Play() override;
+        Roulette() = default;
+        int Play(int, Player&);
 };

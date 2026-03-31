@@ -18,12 +18,17 @@ int main(int argc, char *argv[]) {
     Player joueur = Player();
     Mascotte M = Mascotte();
 
+    SlotMachine slotGame = SlotMachine();
+    GuessNumber guessGame = GuessNumber();
+    Roulette rouletteGame = Roulette();
+
+    int jouer = 1;
+    int bal_temp, new_bal;
+
     std::cout<<"*************** BIENVENUE AU CASINO "<<joueur.getName()<<" ! ***************"<<std::endl;
     std::cout<<" "<<std::endl;
     
     std::cout<<"Vous avez actuellement "<<joueur.getBal()<<" euros"<<std::endl;
-
-    int jouer = 1;
 
     while(jouer){
         M.display();
@@ -45,52 +50,67 @@ int main(int argc, char *argv[]) {
             joueur.save("../save.txt");
             std::cout<<"Au revoir !"<<std::endl;
             jouer = 0;
-        }else if (a == -1){
+        }
+        
+        else if (a == -1){
             M.toggle();
-        }else if (a == 1){
+        }
+        
+        else if (a == 1){
             int keep_playing = 1;
             while (keep_playing){
-                int bal_temp = joueur.getBal();
-                SlotMachine Jeu1 = SlotMachine(bal_temp);
-                bal_temp = Jeu1.Play();
-                joueur.setBal(bal_temp);
-                std::cout<<"Vous avez actuellement "<<bal_temp<<" euros"<<std::endl;
-                PlayAgain rejouer = PlayAgain("Slot Machine", bal_temp);
+                bal_temp = joueur.getBal();
+                new_bal = slotGame.Play(bal_temp, joueur);
+                joueur.setBal(new_bal);
+                std::cout<<"Vous avez actuellement "<<new_bal<<" euros"<<std::endl;
+                PlayAgain rejouer = PlayAgain("Slot Machine", new_bal);
                 keep_playing = rejouer.Dialog();
+            }  
+        }
+        
+        else if (a == 2){
+            if (joueur.hasWonSlotMachine){
+                int keep_playing = 1;
+                while (keep_playing){
+                    bal_temp = joueur.getBal();
+                    new_bal = guessGame.Play(bal_temp, joueur);
+                    joueur.setBal(new_bal);
+                    std::cout<<"Vous avez actuellement "<<new_bal<<" euros"<<std::endl;
+                    PlayAgain rejouer = PlayAgain("Deviner le chiffre", new_bal);
+                    keep_playing = rejouer.Dialog();
+                }
+            }else{
+                std::cout<<" "<<std::endl;
+                std::cout<<"Vous devez d'abord gagner a la Slot Machine !"<<std::endl;
+                std::cout<<" "<<std::endl;
+                usleep(2000000); // on attend 2 secondes pour pouvoir lire le dialogue
             }
-        }else if (a == 2){
-            int keep_playing = 1;
-            while (keep_playing){
-                int bal_temp = joueur.getBal();
-                GuessNumber Jeu2 = GuessNumber(bal_temp);
-                bal_temp = Jeu2.Play();
-                joueur.setBal(bal_temp);
-                std::cout<<"Vous avez actuellement "<<bal_temp<<" euros"<<std::endl;
-                PlayAgain rejouer = PlayAgain("Deviner le chiffre", bal_temp);
-                keep_playing = rejouer.Dialog();
-            }
+            
         }else if (a == 3){
-            int keep_playing = 1;
-            while (keep_playing){
-                int bal_temp = joueur.getBal();
-                Roulette Jeu2 = Roulette(bal_temp);
-                bal_temp = Jeu2.Play();
-                joueur.setBal(bal_temp);
-                std::cout<<"Vous avez actuellement "<<bal_temp<<" euros"<<std::endl;
-                PlayAgain rejouer = PlayAgain("Roulette", bal_temp);
-                keep_playing = rejouer.Dialog();
+            if (joueur.hasWonGuessNumber){
+                int keep_playing = 1;
+                while (keep_playing){
+                    bal_temp = joueur.getBal();
+                    new_bal = rouletteGame.Play(bal_temp, joueur);
+                    joueur.setBal(new_bal);
+                    std::cout<<"Vous avez actuellement "<<new_bal<<" euros"<<std::endl;
+                    PlayAgain rejouer = PlayAgain("Roulette", new_bal);
+                    keep_playing = rejouer.Dialog();
+                }
+            }else{
+                std::cout<<" "<<std::endl;
+                std::cout<<"Vous devez d'abord gagner au jeu Deviner un chiffre !"<<std::endl;
+                std::cout<<" "<<std::endl;
+                usleep(2000000); // on attend 2 secondes pour pouvoir lire le dialogue
             }
         }
-
 
 
         if (joueur.getBal() == 0){
             joueur.save("../save.txt");
             jouer = 0;
         }
-    }
-
-  
+    } 
 
     return 0;
 }
