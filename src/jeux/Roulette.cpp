@@ -20,7 +20,7 @@ int Roulette::Play(int balance, Player &joueur){
 
         std::cout<<"Somme sur chaque nombre : "<< single_bet <<" euros"<<std::endl;
 
-        int guess[multiplicator];
+        std::vector<int> guess(multiplicator);
 
         for (int i=0; i<multiplicator; i++){
             std::cout<<"Sur quel nombre souhaitez-vous parier ?";
