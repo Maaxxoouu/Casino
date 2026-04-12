@@ -6,7 +6,9 @@ set(SOURCES
     Jeux/Roulette.cpp
     Mascotte/Mascotte.cpp
     Dialog/PlayAgain.cpp
-
+    Dialog/BuyAgain.cpp
+    Shop/Shop.cpp
+    Shop/CardFactory.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

@@ -11,6 +11,8 @@
 #include "Jeux/GuessNumber.hpp"
 #include "Jeux/Roulette.hpp"
 #include "Dialog/PlayAgain.hpp"
+#include "Shop/Shop.hpp"
+#include "Dialog/BuyAgain.hpp"
 
 
 int main(int argc, char *argv[]) {
@@ -21,6 +23,7 @@ int main(int argc, char *argv[]) {
     SlotMachine slotGame = SlotMachine();
     GuessNumber guessGame = GuessNumber();
     Roulette rouletteGame = Roulette();
+    Shop boutique(200); // Un booster coûte 100€
 
     int jouer = 1;
     int bal_temp, new_bal;
@@ -40,8 +43,9 @@ int main(int argc, char *argv[]) {
         std::cout<<"2. Deviner le chiffre entre 1 et 5"<<std::endl;
         std::cout<<"3. Roulette"<<std::endl;
         std::cout<<"4. Achat de boosters Pokemon"<<std::endl;
+        std::cout<<"5. Visualiser son inventaire"<<std::endl;
         std::cout<<" "<<std::endl;
-        std::cout<<"Veuillez entrer [-1], [0], [1], [2], [3] ou [4]"<<std::endl;
+        std::cout<<"Veuillez entrer [-1], [0], [1], [2], [3], [4] ou [5]"<<std::endl;
 
         int a;
         std::cin>>a;
@@ -103,6 +107,26 @@ int main(int argc, char *argv[]) {
                 std::cout<<" "<<std::endl;
                 usleep(2000000); // on attend 2 secondes pour pouvoir lire le dialogue
             }
+        }else if (a == 4){
+            if (joueur.hasWonRoulette){
+                int keep_buying = 1;
+                int bought;
+                while (keep_buying) {
+                    bought = boutique.buyAndOpenBooster(joueur);
+                    if (bought){
+                        BuyAgain buyAgain = BuyAgain(joueur.getBal());
+                        keep_buying = buyAgain.Dialog();
+                    }
+                }
+            }else{
+                std::cout<<" "<<std::endl;
+                std::cout<<"Vous devez d'abord gagner au jeu Roulette !"<<std::endl;
+                std::cout<<" "<<std::endl;
+                usleep(2000000); // on attend 2 secondes pour pouvoir lire le dialogue
+            }
+        }else if (a == 5){
+            joueur.inventaire.showInventory();
+            usleep(5000000);
         }
 
 

@@ -2,6 +2,9 @@
 #include <string>
 #include <iostream>
 
+// Création d'une classe mère pour les cartes si plus tard on souhaite ajouter différents types de cartes
+// (En plus de pokemon, on pourrait avoir d'autres TCG, comme Yu-Gi-Oh, One Piece, Magic, etc..)
+
 enum class Rarity { COMMON, RARE, EPIC, LEGENDARY };
 
 class Card {
@@ -18,5 +21,14 @@ class Card {
     
     std::string getName() { return name; }
     int getPrice() { return price; }
-    Rarity getRarity() { return rarity; }
+    //Rarity getRarity() { return rarity; }
+    std::string getRarityString() const {
+        switch(rarity) {
+            case Rarity::COMMON: return "COMMUNE";
+            case Rarity::RARE: return "RARE";
+            case Rarity::EPIC: return "EPIQUE";
+            case Rarity::LEGENDARY: return "LEGENDAIRE";
+            default: return "INCONNU";
+        }
+    }
 };

@@ -20,5 +20,6 @@ class Inventory {
                 card->display();
             }
         }
+        std::cout<<" "<<std::endl;
     }
 };

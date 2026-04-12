@@ -17,7 +17,10 @@ cmake --build .
  - Initialiser l'instance joueur à partir d'un fichier
  - Save l'instance joueur dans le même fichier
  - Il faut gagner à la Slot Machine pour Débloquer le Guess Number, et faut gagner au Guess Number pour débloquer la roulette (gamification)
- - pouvoir vendre les cartes pour se refaire de l'argent ? (et du coup avoir une côte qui change pour les cartes) (optionnel)
+ - pouvoir vendre les cartes pour se refaire de l'argent (et potentiellement avoir une côte qui change pour les cartes) (optionnel)
+ - charger les cartes commons, uncommon, rare, etc... à partir d'une liste de cartes dans un fichier au lieu de les avoir en dur
+ - opti le code en passant le joueur par référence pour les jeux au lieu de faire plusieurs appels à getBal() et setBal()
+ - save l'inventaire dans un fichier
 
 
 
