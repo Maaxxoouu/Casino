@@ -17,6 +17,7 @@ cmake --build .
  - Initialiser l'instance joueur à partir d'un fichier
  - Save l'instance joueur dans le même fichier
  - Il faut gagner à la Slot Machine pour Débloquer le Guess Number, et faut gagner au Guess Number pour débloquer la roulette (gamification)
+ - pouvoir vendre les cartes pour se refaire de l'argent ? (et du coup avoir une côte qui change pour les cartes) (optionnel)
 
 
 

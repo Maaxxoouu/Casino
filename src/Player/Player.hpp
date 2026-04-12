@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <random>
 
+#include "Inventory.hpp"
+
 class Player{
     public:
         Player();
@@ -25,7 +27,7 @@ class Player{
         bool hasWonGuessNumber;
         bool hasWonRoulette;
     
-        // Inventory inventaire; // pour la collection de cartes
+        Inventory inventaire; // pour la collection de cartes
 
     private:
         int balance;
