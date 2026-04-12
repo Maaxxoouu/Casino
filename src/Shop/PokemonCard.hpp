@@ -16,4 +16,16 @@ public:
         std::cout << "[" << type << "] " << name << " - HP: " << hp << " - ATK: " << atk
                   << " (Rarete: " << getRarityString() << ")" << std::endl;
     }
+
+    std::string toCSV() override {
+    std::stringstream ss;
+    ss << "POKEMON;" 
+       << name << ";" 
+       << (int)rarity << ";" 
+       << price << ";" 
+       << hp << ";" 
+       << atk << ";" 
+       << type;
+    return ss.str();
+    }
 };

@@ -1,3 +1,4 @@
+
 #include "CardFactory.hpp"
 
 std::shared_ptr<Card> CardFactory::generateRandomCard() {
@@ -21,4 +22,30 @@ std::shared_ptr<Card> CardFactory::generateRandomCard() {
         default: 
             return std::make_shared<PokemonCard>("MissingNo", Rarity::COMMON, 0, 0, 0, "Bug");
     }
+}
+
+std::shared_ptr<Card> CardFactory::createFromCSV(const std::string& line) {
+    std::stringstream ss(line);
+    std::string typeTag;
+    std::getline(ss, typeTag, ';');
+
+    if (typeTag == "POKEMON") { //si on rajoute d'autres types de cartes => code facile à évoluer
+        std::string n, rStr, pStr, hStr, aStr, t;
+        std::getline(ss, n, ';');
+        std::getline(ss, rStr, ';');
+        std::getline(ss, pStr, ';');
+        std::getline(ss, hStr, ';');
+        std::getline(ss, aStr, ';');
+        std::getline(ss, t, ';');
+
+        return std::make_shared<PokemonCard>(
+            n, 
+            static_cast<Rarity>(std::stoi(rStr)), 
+            std::stoi(pStr), 
+            std::stoi(hStr), 
+            std::stoi(aStr), 
+            t
+        );
+    }
+    return nullptr;
 }

@@ -52,6 +52,7 @@ int main(int argc, char *argv[]) {
 
         if (a == 0){
             joueur.save("../save.txt");
+            joueur.inventaire.save("../inventory.txt");
             std::cout<<"Au revoir !"<<std::endl;
             jouer = 0;
         }
@@ -130,8 +131,10 @@ int main(int argc, char *argv[]) {
         }
 
 
-        if (joueur.getBal() == 0){
+        if (joueur.getBal() == 0){ // GAME OVER
             joueur.save("../save.txt");
+            joueur.inventaire.clear();
+            joueur.inventaire.save("../inventory.txt");
             jouer = 0;
         }
     } 

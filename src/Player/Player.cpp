@@ -3,7 +3,12 @@
 Player::Player(){
     bool test = load("../save.txt");
     if (!test){
-        std::cout << "Impossible de charger le fichier" << std::endl;
+        std::cout << "Impossible de charger le fichier save.txt" << std::endl;
+    }
+
+    bool testInventory = inventaire.load("../inventory.txt");
+    if (!testInventory){
+        std::cout << "Impossible de charger le fichier inventory.txt" << std::endl;
     }
 }
 

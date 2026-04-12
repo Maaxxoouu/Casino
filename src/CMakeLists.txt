@@ -1,6 +1,7 @@
 set(SOURCES
     main.cpp
     Player/Player.cpp
+    Player/Inventory.cpp
     Jeux/SlotMachine.cpp
     Jeux/GuessNumber.cpp
     Jeux/Roulette.cpp
